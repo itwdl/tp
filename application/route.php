@@ -11,10 +11,14 @@
 
 use think\Route;
 
-Route::get('/', 'index/Index/index');
 
-Route::resource('users', 'rest/User');
-Route::get('users/read/:id', 'rest/User/readpage');
+
+
+
+
+Route::resource('admin/user', 'admin/User');
+Route::resource('admin/role', 'admin/role');
+Route::resource('admin/node', 'admin/node');
 
 
 return [
