@@ -16,8 +16,8 @@ class User extends Controller
      */
     public function index()
     {
-        $list = db('user')->field(['id', 'name','username']) ->select();
-        $this->assign('list',$list);
+        $list = db('user')->field(['id', 'name', 'username'])->select();
+        $this->assign('list', $list);
         return view('admin@user/index');
     }
 
@@ -35,10 +35,12 @@ class User extends Controller
     {
         // 接收数据
         $list = $request->post();
-        if ($list['userpass'] != $list['repass']){return $this->success('两次密码不一致');}
+        if ($list['userpass'] != $list['repass']) {
+            return $this->success('两次密码不一致');
+        }
         $date = [
-            'username'=>$list['username'],
-            'name'=>$list['name'],
+            'username' => $list['username'],
+            'name' => $list['name'],
             'userpass' => md5($list['userpass'])
         ];
         $result = db('user')->insertGetId($date);
@@ -49,9 +51,39 @@ class User extends Controller
         }
     }
 
-    public function edit()
+    public function edit($id)
     {
+        $list = db('user')->field(['id', 'name', 'username'])->where('id', $id)->select();
 
-        return view('admin@user/update');
+        $this->assign('list', $list['0']);
+        return view('user/update');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $list = $request->put();
+
+        $date = [
+            'name' => $list['name'],
+            'username' => $list['username'],
+
+        ];
+
+        $result = db('user')->where('id', $id)->update($date);
+        if ($result > 0) {
+            return $this->success('更新(((((((((((っ･ω･)っ Σ(σ｀･ω･´)σ 起飞！', url('admin/user/index'));
+        } else {
+            return $this->success('更新(o＞ω＜o)雅蠛蝶');
+        }
+    }
+
+    public function delete($id)
+    {
+        $result = db('user')->where('id', $id)->delete();
+        if ($result > 0) {
+            return $this->success('删除(((((((((((っ･ω･)っ Σ(σ｀･ω･´)σ 起飞！', url('admin/user/index'));
+        } else {
+            return $this->success('删除(o＞ω＜o)雅蠛蝶');
+        }
     }
 }

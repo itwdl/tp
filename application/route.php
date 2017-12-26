@@ -13,12 +13,13 @@ use think\Route;
 
 
 
-
-
-
-Route::resource('admin/user', 'admin/User');
-Route::resource('admin/role', 'admin/role');
-Route::resource('admin/node', 'admin/node');
+//Route::get('role/nodelist/:id','adming/role/nodelist');
+Route::get('user/delete/:id','admin/user/delete');
+Route::get('role/delete/:id','admin/role/delete');
+Route::get('node/delete/:id','admin/node/delete');
+Route::resource('user', 'admin/user');
+Route::resource('role', 'admin/role');
+Route::resource('node', 'admin/node');
 
 
 return [

@@ -1,5 +1,6 @@
 {extend name="main/index" /}
 {block name="main"}
+<div class="content-page">
 <div class="content">
     <!-- Page Heading Start -->
     <div class="page-heading">
@@ -49,11 +50,13 @@
 
 
                                 <td>
-                                    <div class="btn-group btn-group-xs">
-                                        <a data-toggle="tooltip" title="Off" class="btn btn-default"><i
-                                                class="fa fa-power-off"></i></a>
-                                        <a href="{:url('admin/role/nodelist',['id'=>$v['id']])}" data-toggle="tooltip" title="nodelist" class="btn btn-default"><i
+                                    <div >
+                                        <a href="{:url('admin/role/edit',['id'=>$v['id']])}" data-toggle="tooltip" title="nodelist" class="btn btn-default"><i
                                                 class="fa fa-edit"></i></a>
+                                        <a href="{:url('admin/role/delete',['id'=>$v['id']])}" data-toggle="tooltip" title="DELETE" class="btn btn-danger"><i
+                                                class="glyphicon glyphicon-trash"></i></a>
+                                        <a href="{:url('admin/role/nodelist',['id'=>$v['id']])}" data-toggle="tooltip" title="nodelist" class="btn btn-default"><i
+                                                class="glyphicon glyphicon-plus"></i></a>
                                     </div>
                                 </td>
                             </tr>

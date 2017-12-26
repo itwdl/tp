@@ -70,7 +70,7 @@ class Node extends Controller
         $list = db('node')->field(['id', 'name', 'mname', 'aname', 'status'])->where('id', $id)->select();
 
         $this->assign('list', $list['0']);
-        return view('node/edit');
+        return view('node/update');
     }
 
     /**
@@ -84,9 +84,19 @@ class Node extends Controller
     {
         $list = $request->put();
 
+        $date = [
+            'name' => $list['name'],
+            'mname' => $list['mname'],
+            'aname' => $list['aname'],
+            'status'=> $list['status']
+        ];
 
-        $date = db('node')->where('id', $id)->update($list);
-        var_dump($date);
+        $result = db('node')->where('id', $id)->update($date);
+        if ($result > 0) {
+            return $this->success('更新(((((((((((っ･ω･)っ Σ(σ｀･ω･´)σ 起飞！', url('admin/node/index'));
+        } else {
+            return $this->success('更新(o＞ω＜o)雅蠛蝶');
+        }
     }
 
     /**
@@ -95,8 +105,13 @@ class Node extends Controller
      * @param  int $id
      * @return \think\Response
      */
-    public function delete1($id)
+    public function delete($id)
     {
-        dump('$id');
+        $result = db('node')->where('id', $id)->delete();
+        if ($result > 0) {
+            return $this->success('删除(((((((((((っ･ω･)っ Σ(σ｀･ω･´)σ 起飞！', url('admin/node/index'));
+        } else {
+            return $this->success('删除(o＞ω＜o)雅蠛蝶');
+        }
     }
 }

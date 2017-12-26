@@ -20,7 +20,7 @@
 
                 <div class="widget">
                     <div class="widget-header transparent">
-                        <h2><strong>添加</strong> 用户</h2>
+                        <h2><strong>修改</strong> 用户</h2>
                         <div class="additional-btn">
                             <a href="#" class="hidden reload"><i class="icon-ccw-1"></i></a>
                             <a href="#" class="widget-toggle"><i class="icon-down-open-2"></i></a>
@@ -29,22 +29,19 @@
                     </div>
                     <div class="widget-content padding">
                         <div id="basic-form">
-                            <form action="{:url('admin/con1/inset')}" method="post">
+                            <form action="{:url('admin/user/update',['id'=>$list['id']])}" method="post">
+                                <input type="hidden" name="_method" value="PUT" >
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">用户名</label>
                                     <input type="text" class="form-control" id="exampleInputEmail1"
-                                           placeholder="Enter email" name="username">
+                                           placeholder="username" name="username" value="{$list.username}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">名字</label>
                                     <input type="text" class="form-control" id="exampleInputEmail1"
-                                           placeholder="Enter email" name="name">
+                                           placeholder="name" name="name" value="{$list.name}">
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1"
-                                           placeholder="Password" name="userpass">
-                                </div>
+
 
                                 <button type="submit" class="btn btn-default">提交</button>
                             </form>
