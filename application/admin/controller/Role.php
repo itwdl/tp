@@ -2,11 +2,11 @@
 
 namespace app\admin\controller;
 
-use think\Controller;
+//use think\Controller;
 use think\Db;
 use think\Request;
 
-class Role extends Controller
+class Role extends Admincontroller
 {
     public function index()
     {
@@ -44,23 +44,29 @@ class Role extends Controller
             ->view('lamp_node', "id,name,mname,aname", 'lamp_node.id=lamp_role_node.nid')
             ->where('rid', '=', $id)
             ->select();
+        if(!empty($list)){
 
-        foreach ($list as $v) {
-            $lists[] = $v['nid'];
+            foreach ($list as $v) {
+                $lists[] = $v['nid'];
+            }
+            $this->assign('lists', $lists);
+        }else{
+            $this->assign('lists',['99999']);
         }
 
         $this->assign('role', $role);
         $this->assign('date', $date);
-        $this->assign('lists', $lists);
         return view('role/nodelist');
     }
 
     public function rolenode(Request $request)
     {
-        $list = $request->post();
 
-        $node = $list['node'];
+        $list = $request->post();
         $id = $list['id'];
+        if(empty($list['node'])){return $this->success('必须添加节点', url('admin/role/nodelist',['id'=>$id]));}
+        $node = $list['node'];
+
         Db::startTrans();
         try {
             db('role_node')->where('rid', $id)->delete();
@@ -103,10 +109,6 @@ class Role extends Controller
     }
 
 
-    public function read()
-    {
-
-    }
 
     public function update(Request $request, $id)
     {

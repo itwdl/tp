@@ -12,7 +12,7 @@
 use think\Route;
 
 
-
+Route::get('/','admin/index/index');
 //Route::get('role/nodelist/:id','adming/role/nodelist');
 Route::get('user/delete/:id','admin/user/delete');
 Route::get('role/delete/:id','admin/role/delete');

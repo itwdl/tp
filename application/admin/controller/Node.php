@@ -2,11 +2,13 @@
 
 namespace app\admin\controller;
 
-use think\Controller;
+use app\admin\controller;
+
+//use think\Controller;
 use think\Request;
 use think\db;
 
-class Node extends Controller
+class Node extends Admincontroller
 {
     /**
      * 显示资源列表

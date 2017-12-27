@@ -34,7 +34,7 @@
                                     <th>id</th>
                                     <th>username</th>
                                     <th>name</th>
-
+                                    <th>role</th>
                                     <th data-sortable="false">操作
 
                                     </th>
@@ -43,23 +43,29 @@
                                 </thead>
 
                                 <tbody>
-                                {volist name ="list" key ="k" id ="v"}
+                                {volist name ="list" key ="k" id ="vo"}
                                 <tr>
                                     <td>{$k}</td>
                                     <td><input type="checkbox" class="rows-check"></td>
-                                    <td>{$v.id}</td>
-                                    <td>{$v['username']}</td>
-                                    <td>{$v['name']}</td>
+                                    <td>{$vo.id}</td>
+                                    <td>{$vo['username']}</td>
+                                    <td>{$vo['name']}</td>
+                                    <td>
+                                        {volist name= "vo.role" id = "j"}
 
+                                        <span>{$j[0]['name']}</span>
+                                        {/volist}
+                                    </td>
 
 
                                     <td>
                                         <div >
-                                            <a href="{:url('admin/user/edit',['id'=>$v['id']])}" data-toggle="tooltip" title="Edit" class="btn btn-default"><i
+                                            <a href="{:url('admin/user/edit',['id'=>$vo['id']])}" data-toggle="tooltip" title="Edit" class="btn btn-default"><i
                                                     class="fa fa-edit"></i></a>
-                                            <a  href="{:url('admin/user/delete',['id'=>$v['id']])}" data-toggle="tooltip" title="DELETE" class="btn  btn-danger "><i
+                                            <a  href="{:url('admin/user/delete',['id'=>$vo['id']])}" data-toggle="tooltip" title="DELETE" class="btn  btn-danger "><i
                                                     class="glyphicon glyphicon-trash"></i></a>
-
+                                            <a href="{:url('admin/user/rolelist',['id'=>$vo['id']])}" data-toggle="tooltip" title="Edit" class="btn btn-default"><i
+                                                    class="glyphicon glyphicon-plus"></i></a>
 
                                         </div>
                                     </td>
