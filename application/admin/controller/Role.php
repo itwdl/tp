@@ -92,6 +92,11 @@ class Role extends Admincontroller
 
     public function delete($id)
     {
+
+        $date = db('user_role')->field('uid')->find();
+        if (!empty($date)){
+            return $this->success('有用户使用此角色');
+        }
         $result = db('role')->where('id', $id)->delete();
         if ($result > 0) {
             return $this->success('删除(((((((((((っ･ω･)っ Σ(σ｀･ω･´)σ 起飞！', url('admin/role/index'));

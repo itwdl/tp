@@ -109,6 +109,10 @@ class Node extends Admincontroller
      */
     public function delete($id)
     {
+        $date = db('role_node')->field('rid')->select();
+        if (!empty($date)){
+            return $this->success('有角色使用此节点');
+        }
         $result = db('node')->where('id', $id)->delete();
         if ($result > 0) {
             return $this->success('删除(((((((((((っ･ω･)っ Σ(σ｀･ω･´)σ 起飞！', url('admin/node/index'));

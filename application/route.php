@@ -10,18 +10,24 @@
 // +----------------------------------------------------------------------
 
 use think\Route;
+//
+Route::resource('/','index/index/index');
+Route::post('admin','admin/index/logindo');
+Route::get('admin','admin/index/index');
+Route::get('logout','admin/index/logout');
+Route::get('role/rolelist/:id','admin/user/rolelist');
+Route::get('role/nodelist/:id','admin/role/nodelist');
 
-
-Route::get('/','admin/index/index');
-//Route::get('role/nodelist/:id','adming/role/nodelist');
 Route::get('user/delete/:id','admin/user/delete');
 Route::get('role/delete/:id','admin/role/delete');
 Route::get('node/delete/:id','admin/node/delete');
+
+
 Route::resource('user', 'admin/user');
 Route::resource('role', 'admin/role');
 Route::resource('node', 'admin/node');
 
-
+Route::get(':name$', 'admin/main/index');
 return [
 
 ];

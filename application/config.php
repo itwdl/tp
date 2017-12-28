@@ -242,7 +242,7 @@ return [
     // 验证码配置
     'captcha'  => [
         // 字体大小
-        'fontSize' => 35,
+        'fontSize' => 25,
         // 验证码长度（位数）
         'length'   => 4,
         // 验证码背景图片

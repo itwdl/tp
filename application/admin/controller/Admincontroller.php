@@ -10,10 +10,12 @@ class Admincontroller extends Controller
     public function _initialize()
     {
         //判断session是否存在
+
         if(empty(session('admin_user'))){
             //跳转到 登陆页
-            $this->redirect("Public/login");
+            return view('admin@index/login');
         }
+
         $request = Request::instance();
         $mname = $request->controller(); //获取控制器名
         $aname = $request->action(); //获取方法名
